@@ -1,0 +1,71 @@
+services:
+  captcha-bot:
+#    user: "65534:65534"  # nobody:nogroup
+    env_file: .env
+    container_name: captcha-bot
+#    container_name: captcha-bot
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    hostname: captcha-bot
+    networks:
+      - default
+    environment:
+      - CAPTCHABOT_PRIVATE
+      - CAPTCHABOT_TOKEN
+      - CAPTCHABOT_OWNER
+      - CAPTCHABOT_USE_WEBHOOK
+      - CAPTCHABOT_WEBHOOK_IP
+      - CAPTCHABOT_WEBHOOK_PORT
+      - CAPTCHABOT_WEBHOOK_URL
+      - CAPTCHABOT_WEBHOOK_PATH
+      - CAPTCHABOT_WEBHOOK_CERT
+      - CAPTCHABOT_WEBHOOK_CERT_PRIV_KEY
+      - CAPTCHABOT_WEBHOOK_SECRET_TOKEN
+      - CAPTCHABOT_CHATS_DIR
+      - CAPTCHABOT_CAPTCHAS_DIR
+      - CAPTCHABOT_F_ALLOWED_USERS
+      - CAPTCHABOT_F_ALLOWED_GROUPS
+      - CAPTCHABOT_F_BAN_GROUPS
+      - CAPTCHABOT_INIT_LANG
+      - CAPTCHABOT_INIT_BILANG
+      - CAPTCHABOT_INIT_ENABLE
+      - CAPTCHABOT_INIT_URL_ENABLE
+      - CAPTCHABOT_INIT_RM_ALL_MSG
+      - CAPTCHABOT_INIT_CAPTCHA_TIME_MIN
+      - CAPTCHABOT_MAX_CONFIG_CAPTCHA_TIME
+      - CAPTCHABOT_INIT_CAPTCHA_DIFFICULTY_LEVEL
+      - CAPTCHABOT_INIT_CAPTCHA_CHARS_MODE
+      - CAPTCHABOT_INIT_RM_RESULT_MSG
+      - CAPTCHABOT_INIT_RM_WELCOME_MSG
+      - CAPTCHABOT_MAX_POLL_OPTIONS
+      - CAPTCHABOT_MAX_POLL_QUESTION_LENGTH
+      - CAPTCHABOT_MAX_POLL_OPTION_LENGTH
+      - CAPTCHABOT_T_DEL_MSG
+      - CAPTCHABOT_T_FAST_DEL_MSG
+      - CAPTCHABOT_T_DEL_WELCOME_MSG
+      - CAPTCHABOT_T_RESTRICT_NO_TEXT_MSG
+      - CAPTCHABOT_IGNORE_LIST_MAX
+      - CAPTCHABOT_INIT_RESTRICT_NON_TEXT_MSG
+      - CAPTCHABOT_MAX_WELCOME_MSG_LENGTH
+      - CAPTCHABOT_MAX_FAIL_BAN
+      - CAPTCHABOT_MAX_FAIL_BAN_POLL
+      - CAPTCHABOT_BAN_DURATION
+
+
+    volumes:
+      - ./data:/srv/app/src/data
+#      - baxter_data:/srv/app/src/data
+
+#      - ${APP_DIR}:/home/${APP_USER}/www
+#      - ${APP_DIR}:/application
+#      - /etc/localtime:/etc/localtime:ro
+
+#volumes:
+#  baxter_data:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      o: bind
+#      device: ./data
