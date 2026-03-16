@@ -66,6 +66,17 @@ RUN git clone ${GITHUB_URL} ${APP_DIR} && \
 
 FROM base AS app
 
+# Установка runtime-зависимостей в финальный образ
+RUN apt-get ${APT_OPTS} update && \
+    apt-get ${APT_OPTS} install \
+    libcairo2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libjpeg62-turbo \
+    libgif7 \
+    librsvg2-2 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Address the pip warning regarding PATH
 ENV PATH="${PATH}:${BOT_HOME_DIR}/.local/bin"
 
