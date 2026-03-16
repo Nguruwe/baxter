@@ -1,7 +1,7 @@
 # This Dockerfile has buildkit syntax, to allow build steps to be cached
 # and speed up when rebuilding
 
-FROM python:3.9-slim-trixie AS base
+FROM python:3.14-slim-trixie AS base
 
 # Build ARGs
 ARG BOT_PROJECT="captcha-bot"
@@ -44,6 +44,8 @@ RUN apt-get ${APT_OPTS} update && \
     tcl8.6-dev \
     tk8.6-dev \
 gosu \
+    libpango1.0-dev \
+    libcairo2-dev \
     python3-tk
 
 ################################################################################
